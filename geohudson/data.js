@@ -6,7 +6,7 @@
 waypoints({
   "satellite": [
     {
-      "src": "https://dl.dropboxusercontent.com/u/6589453/waypoints/images/satellite-bg/1.png",
+      "src": "./images/satellite-bg/1.png",
       "topLeft": {
         "latitude": 34.908110,
         "longitude": -80.725681
@@ -20,7 +20,7 @@ waypoints({
     // 34.908954, -80.723839 (top - latitude)
     // 34.907671, -80.724924 (left - longitude)
     {
-      "src": "https://dl.dropboxusercontent.com/u/6589453/waypoints/images/satellite-bg/2.png",
+      "src": "./images/satellite-bg/2.png",
       "topLeft": {
         "latitude": 34.909004,
         "longitude": -80.724894
@@ -34,7 +34,7 @@ waypoints({
     // 34.910316, -80.723530 (top - latitude)
     // 34.909891, -80.724283 (left - longitude)
     {
-      "src": "https://dl.dropboxusercontent.com/u/6589453/waypoints/images/satellite-bg/3.png",
+      "src": "./images/satellite-bg/3.png",
       "topLeft": {
         "latitude": 34.909893,
         "longitude": -80.723536

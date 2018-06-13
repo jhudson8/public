@@ -52,7 +52,7 @@ TEST
 				showPoint({latitude: 34.907292, longitude: -80.724112}, images[0],
 						document.getElementById('imageContainer'), document.getElementById('pointer'), 400, 600);
 			}
-			image.src = 'https://dl.dropboxusercontent.com/u/6589453/waypoints/test/test-points.png';
+			image.src = './test/test-points.png';
 			
 			
 			function showPoint(location, image, container, pointerElement, imageHeight, imageWidth) {
@@ -93,7 +93,7 @@ TEST
 				container.style.backgroundPosition = '-' + topLeft.x + 'px -' + topLeft.y + 'px';
 
 				// set the image
-				container.style.backgroundImage = 'url(https://dl.dropboxusercontent.com/u/6589453/waypoints/test/test-points.png)';
+				container.style.backgroundImage = 'url(./test/test-points.png)';
 
 				// fix pointer location
 				var pointerX = pointOnBackground.x - topLeft.x - 12;
