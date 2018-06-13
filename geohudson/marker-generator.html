@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .marker-container {
+        display: inline-block;
+        padding: 10px 12px;
+      }
+      .marker-header {
+        text-align: center;
+        position: relative;
+        top: 2px;
+        color: #939393;
+        font-size: 10px;
+      }
+      .marker-code {
+        position: relative;
+        top: -4px;
+        left: 8px;
+      }
+      .marker-code-label {
+        color: #939393;
+      }
+      .marker-code-value {
+        display: inline-block;
+        margin-left: 8px;
+      }
+      .marker-qr-code {
+        height: 90px;
+        width: 90px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    var root = document.getElementById('root');
+
+    function waypoints (data) {
+      data.points.forEach(function (point) {
+        var el = createMarker(point);
+        root.appendChild(el);
+      });
+    }
+
+    function el (tag, className, inner, attributes) {
+      if (!attributes && typeof inner === 'object') {
+        attributes = inner;
+        inner = undefined;
+      }
+      var _el = document.createElement(tag);
+      if (attributes) {
+        Object.keys(attributes).forEach(function (key) {
+          _el[key] = attributes[key];
+        });
+      }
+      if (className) {
+        _el.className = className;
+      }
+      if (inner) {
+        if (typeof inner === 'string') {
+          _el.innerText = inner;
+        } else {
+          var children = inner();
+          if (children) {
+            children.forEach(function (child) {
+              _el.appendChild(child);
+            })
+          }
+        }
+      }
+      return _el;
+    }
+
+    function createMarker (point) {
+      var code = point[1];
+      var root = el('div', 'marker-container', function () {
+        return [
+          el('div', 'marker-header', 'bit.ly/2LGYwqw'),
+          el('div', 'marker-body', function () {
+            return [
+              el('img', 'marker-qr-code', { src: './images/qr-code.png' })
+            ];
+          }),
+          el('div', 'marker-code', function () {
+            return [
+              el('span', 'marker-code-label', 'code:'),
+              el('span', 'marker-code-value', code + '')
+            ];
+          })
+        ]
+      });
+      return root;
+    }
+  </script>
+  <script src="./data.js"></script>
+</html>
