@@ -15,7 +15,7 @@
 
       .marker-container {
         display: inline-block;
-        padding: 10px 12px;
+        padding: 4px 4px;
       }
       .marker-header {
         text-align: center;
@@ -26,11 +26,12 @@
       }
       .marker-code {
         position: relative;
-        top: -4px;
-        left: 8px;
+        top: -8px;
+        left: 12px;
       }
       .marker-code-label {
         color: #939393;
+        font-size: 12px;
       }
       .marker-code-value {
         display: inline-block;
@@ -88,7 +89,7 @@
       var code = point[1];
       var root = el('div', 'marker-container', function () {
         return [
-          el('div', 'marker-header', 'bit.ly/2LGYwqw'),
+          el('div', 'marker-header', 'tr.im/geohudson'),
           el('div', 'marker-body', function () {
             return [
               el('img', 'marker-qr-code', { src: './images/qr-code.png' })
