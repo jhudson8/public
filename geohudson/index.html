@@ -1,25 +1,79 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>Waypoints</title>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Geo</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
     <style>
-      .app-loading {
-        background-image: url('./images/loading.gif');
-        height: 120px;
-        width: 120px;
-        margin: auto;
-        margin-top: 50%;
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
       }
     </style>
   </head>
   <body>
-    <div class="app-loading"/>
+    <div>
+      <div class="attached vertical flexible layout">
+        <div style="text-align: center">
+          <h3 style="margin-bottom: 0;">Hudson's Geo Game</h3>
+        </div>
+        <div class="padded layout">
+          <span style="float: right; padding: 12px">
+              <a href="https://jhudson8.github.io/public/geohudson/index.html" class="btn btn-primary btn-lg">Start</a>
+          </span>
+          Welcome to a race to find markers around the property.
+          <br/>
+          There are 3 different game modes, each with 4 to 8 waypoints.  It's a new adventure every time you play.
+        </div>
+        <div id="map" class="expandable layout"></div>
+    </div>
+
+    <script>
+      var data;
+      var initialized;
+      function initMap() {
+        initialized = true;
+        if (data) {
+          render();
+        }
+      }
+
+      function waypoints (_data) {
+        data = _data;
+        if (initialized) {
+          render();
+        }
+      }
+
+      function render () {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          mapTypeId: 'satellite',
+          zoom: 18,
+          center: { lat: 34.908193, lng: -80.723737 }
+        });
+
+        data.points.forEach(function (item) {
+          var latLng = { lat: item[2], lng: item[3] };
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map,
+            label: ''
+          });
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKH9DwFX-C01_n8YDHh-1k55-OT1JGtpg&callback=initMap">
+    </script>
   </body>
-  <script>
-  	waypoints = './data.js';
-  </script>
-  <script src="app/app.js"></script>
+  <script src="./data.js"></script>
 </html>

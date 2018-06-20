@@ -1,0 +1,32 @@
+.flexible.layout {
+    display: flex;
+}
+
+.vertical.flexible.layout {
+    flex-direction: column;
+}
+
+.expandable.layout {
+    flex-grow: 1;
+}
+
+.attached.layout {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.relative.layout {
+    position: relative;
+}
+
+.scrollable.layout {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.padded.layout {
+    padding: 12px;
+}

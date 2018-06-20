@@ -20,13 +20,13 @@
       .marker-header {
         text-align: center;
         position: relative;
-        top: 2px;
+        top: 6px;
         color: #939393;
         font-size: 10px;
       }
       .marker-code {
         position: relative;
-        top: -8px;
+        top: -12px;
         left: 12px;
       }
       .marker-code-label {
@@ -89,7 +89,7 @@
       var code = point[1];
       var root = el('div', 'marker-container', function () {
         return [
-          el('div', 'marker-header', 'bit.ly/2liC8bQ'),
+          el('div', 'marker-header', 'hudsons.me/geo'),
           el('div', 'marker-body', function () {
             return [
               el('img', 'marker-qr-code', { src: './images/qr-code.png' })
