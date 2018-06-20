@@ -112,7 +112,7 @@ waypoints({
       },
       "advanced": {
         "maxRating": 3,
-        "minRating": 1,
+        "minRating": 2,
         "allocations": [
             [1, 1, 30],
           [2, 2, 40],
