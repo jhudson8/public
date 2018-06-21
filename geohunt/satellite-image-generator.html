@@ -26,7 +26,8 @@
 
   </head>
   <body>
-    <div id="map" style="width: 640px; height: 520px"></div>
+    <div id="map" style="width: 640px; height: 520px; display: none"></div>
+    <pre id="log" style="font-family: 'Courier New', Courier, monospace"></pre>
     <script>
 
     var data;
@@ -46,21 +47,27 @@
     }
 
     function render () {
+        var log = 'rm -f *';
         data.points.forEach(function (point) {
-            renderPoint(point);
+            log += ('\n' + renderPoint(point) + '\n');
         });
+        document.getElementById('log').innerText = log;
     }
 
     function renderPoint (item) {
-        var id = item[0];
+        var id = item[0] + '';
         var code = item[1];
         var lat = item[2];
         var lng = item[3];
 
+        if (id.indexOf('-') === 0) {
+            return '';
+        }
+
         var imgUrl = 'https://maps.googleapis.com/maps/api/staticmap';
         var params = {
             center: lat + ',' + lng,
-            zoom: '20',
+            zoom: '19',
             size: '640x480',
             maptype: 'satellite',
             markers: 'anchor:center%7Cicon:' + encodeURIComponent('http://hudsons.me/geohunt/images/map-marker.png') + '%7C' + encodeURIComponent(lat) + ',' + encodeURIComponent(lng),
@@ -74,11 +81,13 @@
             }
             imgUrl += (key + '=' + params[key]);
         }
+
         var a = document.createElement('a');
         a.setAttribute('href', imgUrl);
         a.setAttribute('download', id + '.jpeg');
         a.innerText = id + '.jpeg';
         document.getElementById('map').appendChild(a);
+        return 'curl "' + imgUrl + '" > ' + id + '.jpeg';
 /*
         console.log(imgUrl);
         var html = '<a href="' + imgUrl + '" download="' + id + '.jpeg">' + id + '.jpeg</a>';
