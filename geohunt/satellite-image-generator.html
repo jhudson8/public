@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      #map a {
+          display: block;
+          margin-top: 6px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+  </head>
+  <body>
+    <div id="map" style="width: 640px; height: 520px"></div>
+    <script>
+
+    var data;
+    var initialized;
+    function initMap() {
+      initialized = true;
+      if (data) {
+        render();
+      }
+    }
+
+    function waypoints (_data) {
+      data = _data;
+      if (initialized) {
+        render();
+      }
+    }
+
+    function render () {
+        data.points.forEach(function (point) {
+            renderPoint(point);
+        });
+    }
+
+    function renderPoint (item) {
+        var id = item[0];
+        var code = item[1];
+        var lat = item[2];
+        var lng = item[3];
+
+        var imgUrl = 'https://maps.googleapis.com/maps/api/staticmap';
+        var params = {
+            center: lat + ',' + lng,
+            zoom: '20',
+            size: '640x480',
+            maptype: 'satellite',
+            markers: 'anchor:center%7Cicon:' + encodeURIComponent('http://hudsons.me/geohunt/images/map-marker.png') + '%7C' + encodeURIComponent(lat) + ',' + encodeURIComponent(lng),
+            key: 'AIzaSyCKH9DwFX-C01_n8YDHh-1k55-OT1JGtpg'
+        }
+        for (var key in params) {
+            if (imgUrl.indexOf('?') >= 0) {
+                imgUrl += '&';
+            } else {
+                imgUrl += '?';
+            }
+            imgUrl += (key + '=' + params[key]);
+        }
+        var a = document.createElement('a');
+        a.setAttribute('href', imgUrl);
+        a.setAttribute('download', id + '.jpeg');
+        a.innerText = id + '.jpeg';
+        document.getElementById('map').appendChild(a);
+/*
+        console.log(imgUrl);
+        var html = '<a href="' + imgUrl + '" download="' + id + '.jpeg">' + id + '.jpeg</a>';
+        document.getElementById('map').innerHTML = html;
+*/
+/*
+        var map = new google.maps.Map(document.getElementById('map'), {
+            mapTypeId: 'satellite',
+            zoom: 21,
+            center: { lat: item[2], lng: item[3] },
+            disableDefaultUI: true
+        });
+
+        var latLng = { lat: item[2], lng: item[3] };
+        var marker = new google.maps.Marker({
+            position: latLng,
+            map: map,
+            icon: 'http://hudsons.me/geohunt/images/map-marker.png'
+        });
+
+        setTimeout(function () {
+            debugger;
+            html2canvas(document.getElementById('map'))
+            .then(function (canvas) {
+                document.getElementById('output').appendChild(canvas);
+            }, function (err) {
+                debugger;
+                console.error(err);
+            });
+        }, 1000);
+*/
+    }
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKH9DwFX-C01_n8YDHh-1k55-OT1JGtpg&callback=initMap">
+    </script>
+  </body>
+  <script src="./data.js"></script>
+</html>
