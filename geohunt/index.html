@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Geo Hunt</title>
     <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/style.css?v=1" rel="stylesheet">
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -24,15 +24,19 @@
     <div>
       <div class="attached vertical flexible layout">
         <div style="text-align: center">
-          <h3 style="margin: 0 0; padding: 6px">Hudson Geo Hunt</h3>
+          <h3 style="margin: 0 0; padding: 6px 0 0 0">Hudson Geo Hunt</h3>
         </div>
-        <div class="padded layout" style="padding-top: 0;">
-          <span style="float: right; padding: 12px">
-              <a href="https://hudsons.me/geohunt/play.html" class="btn btn-primary btn-lg">Play</a>
-          </span>
-          Find waypoint markers in a race around the "world".
-          <br/>
-          There are 3 different game modes and each game with 4 to 8 waypoints.  With over 30 markers hidden around the property, it's a different adventure every time you play!
+        <div class="padded flexible layout">
+          <div class="expandable layout">
+            Find waypoint markers in a race against time.
+            <div class="smalltext">
+              Three different game modes giving you different ways to track and find between 4 and 8 waypoints for each quest.
+              With over 40 waypoints to find, every play is a new adventure!
+            </div>
+          </div>
+          <div>
+            <a href="https://hudsons.me/geohunt/play.html" class="btn btn-primary btn-lg">Play</a>
+          </div>
         </div>
         <div id="map" class="expandable layout"></div>
     </div>

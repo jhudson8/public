@@ -30,3 +30,9 @@
 .padded.layout {
     padding: 12px;
 }
+
+.smalltext {
+    font-size: 10px;
+    line-height: 13px;
+    padding: 6px 12px 34px 0;
+}
