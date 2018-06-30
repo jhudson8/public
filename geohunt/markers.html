@@ -24,6 +24,20 @@
 
     var data;
     var initialized;
+    var indexByCode = {};
+
+    window.fromCode = function (code) {
+      var rtn = '';
+      if (Array.isArray(code)) {
+        for (var i = 0; i < code.length; i++) {
+          rtn = rtn + (i + 1 + ') code ' + code[i] + ': ' + indexByCode[code[i] + '']);
+          rtn += '\n';
+        }
+        return rtn;
+      }
+      return indexByCode[code + ''];
+    };
+
     function initMap() {
       initialized = true;
       if (data) {
@@ -46,6 +60,7 @@
       });
 
       data.points.forEach(function (item) {
+        indexByCode[item[1]] = item[0];
         function addMarker (enabled) {
           var latLng = { lat: item[2], lng: item[3] };
           var marker = new google.maps.Marker({
@@ -64,7 +79,7 @@
         }
         addMarker(true);
       });
-
+/*
       var currentLocationMarker;
       navigator.geolocation.watchPosition(function (position) {
         if (currentLocationMarker) {
@@ -76,6 +91,7 @@
           icon: 'http://hudsons.me/geohunt/images/map-marker2.png'
         });
       });
+*/
     }
 
     </script>
